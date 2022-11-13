@@ -1,0 +1,139 @@
+timezone: 'America/Los_Angeles'
+required: !attrs
+  - instrume
+  - imagetyp
+  - ccd-temp
+  - date-obs
+  - exptime
+  - gain
+  - xbinning
+  - ybinning
+  - offset
+  - dec
+  - ra
+mutable: !attrs
+  - object
+  - observer
+  - filter
+  - imagetyp
+  - project
+  - session
+defaults: !attrs
+  - instrume
+  - _gain
+  - _binning
+  - _offset
+  - imagetyp
+  - _ccdtemp  
+  - object
+  - filter
+  - exptime
+  - session
+  - _path
+catalog: 
+  _base_path: !attrs
+    - instrume
+    - _binning
+    - _gain
+    - _offset
+    - _imagetyp
+  _base_name: !attrs
+    - _imagetyp
+  light:
+    path: !attrs
+      - object
+      - filter
+      - session
+      - _ccdtemp
+      - exptime
+    name: !attrs
+      - object
+      - filter
+      - exptime
+      - date-obs
+  flat:
+    path: !attrs
+      - filter
+      - session
+    name: !attrs
+      - filter
+      - exptime
+      - date-obs
+  dark:
+    path: !attrs
+      - _ccdtemp
+      - exptime
+    name: !attrs
+      - _ccdtemp
+      - exptime
+      - date-obs
+  bias:
+    path: !attrs []
+    name: !attrs
+      - _gain
+      - _offset
+      - date-obs
+siril:
+  _base_path: !attrs
+    - _imagetyp
+  _base_name: !attrs []
+  light:
+    path: !attrs
+      - object
+      - filter
+      - session
+      - exptime
+    name: !attrs []
+  flat:
+    path: !attrs
+      - filter
+      - session
+      - exptime
+    name: !attrs []
+  dark:
+    path: !attrs
+      - exptime
+    name: !attrs []
+  bias:
+    path: !attrs []
+    name: !attrs []
+  
+
+calibration:
+  flat:
+    targets:
+      - light
+    attrs: !attrs
+      - instrume
+      - _binning
+      - filter
+      - session
+  dark:
+    targets:
+      - light
+      - flat
+    attrs: !attrs
+      - instrume
+      - _binning
+      - _gain
+      - _offset
+      - exptime
+      - _ccdtemp
+  bias:
+    targets:
+      - flat
+    attrs: !attrs
+      - instrume
+      - _binning
+      - _gain
+      - _offset
+  darkflat:
+    targets:
+      - flat
+    attrs: !attrs
+      - instrume
+      - _binning
+      - _gain
+      - _offset
+      - exptime
+    
